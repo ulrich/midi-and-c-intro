@@ -15,9 +15,9 @@ int main(int argc, char **argv)
 void write_track1(FILE *file)
 {
     unsigned long marque = MIDI_write_track_header(file);
-    MIDI_tempo(file, 500000);
-    MIDI_fin_de_la_piste(file);
-    ecrire_taille_finale_piste(file, marque);
+    MIDI_add_tempo(file, 500000);
+    MIDI_write_end_of_track(file);
+    MIDI_write_final_size_of_track(file, marque);
 }
 
 void write_track2(FILE *fichier)
@@ -35,6 +35,6 @@ void write_track2(FILE *fichier)
         MIDI_Program_Change(fichier, 0, i);
         Note_unique_avec_duree(fichier, 0, C3 + 9, 64, BLACK);
     }
-    MIDI_fin_de_la_piste(fichier);
-    ecrire_taille_finale_piste(fichier, marque);
+    MIDI_write_end_of_track(fichier);
+    MIDI_write_final_size_of_track(fichier, marque);
 }
